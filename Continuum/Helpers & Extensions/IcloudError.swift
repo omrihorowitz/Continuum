@@ -16,11 +16,11 @@ enum IcloudError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .couldNotDetermine:
-            return "Could not determine if Icloud is available."
+            return "couldNotDetermine"
         case .noAccount:
-            return "No Icloud account attached."
+            return "noAccount"
         case .restricted:
-            return "ICloud account is restricted."
+            return "restricted"
         }
     }
 }

@@ -15,6 +15,7 @@ struct PostStrings {
     static let photoAssetKey = "photoAsset"
     static let commentsKey = "comments"
     static let timestampKey = "timestamp"
+    static let commentCountKey = "commentCount"
 }
 
 struct CommentStrings {
@@ -29,6 +30,7 @@ class Post {
     var caption: String
     var comments: [Comment]
     let recordID: CKRecord.ID
+    var commentCount: Int = 0
     
     var photo: UIImage?{
         get{
@@ -58,11 +60,12 @@ class Post {
     }
 }
     
-    init(photo: UIImage?, caption: String, timestamp: Date = Date(), comments: [Comment] = [], recordID: CKRecord.ID = CKRecord.ID(recordName: UUID().uuidString)) {
+    init(photo: UIImage?, caption: String, timestamp: Date = Date(), comments: [Comment] = [], recordID: CKRecord.ID = CKRecord.ID(recordName: UUID().uuidString), commentCount: Int = 0) {
         self.caption = caption
         self.timestamp = timestamp
         self.comments = comments
         self.recordID = recordID
+        self.commentCount = commentCount
         self.photo = photo
     }
 }
@@ -87,7 +90,7 @@ class Comment {
 
 extension Post: SearchableRecord{
     func matches(searchTerm: String) -> Bool {
-        return self.caption == searchTerm || self.comments.contains(where: {
+        return self.caption.lowercased() == searchTerm.lowercased() || self.comments.contains(where: {
             (comment) -> Bool in
             if comment.text == searchTerm {
                 return true
@@ -105,7 +108,8 @@ extension CKRecord {
         self.setValuesForKeys([
             PostStrings.captionKey : post.caption,
             PostStrings.timestampKey : post.timestamp,
-            PostStrings.photoAssetKey : post.photoAsset
+            PostStrings.photoAssetKey : post.photoAsset,
+            PostStrings.commentCountKey : post.commentCount
             
         ])
     }
@@ -124,7 +128,8 @@ extension CKRecord {
 extension Post {
     convenience init?(ckRecord: CKRecord) {
         guard let caption = ckRecord[PostStrings.captionKey] as? String,
-              let timestamp = ckRecord[PostStrings.timestampKey] as? Date else { return nil}
+              let timestamp = ckRecord[PostStrings.timestampKey] as? Date,
+              let commentCount = ckRecord[PostStrings.commentCountKey] as? Int else { return nil}
         
         var foundPhoto: UIImage?
         
@@ -137,7 +142,7 @@ extension Post {
             }
         }
         self.init(photo: foundPhoto, caption: caption, timestamp: timestamp,
-                  comments: [], recordID: ckRecord.recordID)
+                  comments: [], recordID: ckRecord.recordID, commentCount: commentCount)
     }
 }
 

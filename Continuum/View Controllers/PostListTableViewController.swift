@@ -27,11 +27,31 @@ class PostListTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self
+        fullSync { (result) in
+            switch result {
+            case .success(_):
+                self.tableView.reloadData()
+            case .failure(_):
+                print("No posts you scrub")
+            }
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
         resultsArray = PostController.shared.posts
         tableView.reloadData()
+    }
+    
+    func fullSync(completion: @escaping(Result<Bool, PostError>) -> Void) {
+        PostController.shared.fetchPosts { (results) in
+            switch results{
+            case .success(let posts):
+                self.resultsArray = posts
+                completion(.success(true))
+            case .failure(_):
+                return completion(.failure(.queryError))
+            }
+        }
     }
     // MARK: - Table view data source
 

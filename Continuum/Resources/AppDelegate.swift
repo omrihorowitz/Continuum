@@ -16,7 +16,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-    // Override point for customization after application launch.
+    
+    checkIcloudStatus { (result) in
+        switch result {
+        case .success(_):
+            print("We have an iCloud account")
+        case .failure(let error):
+            self.window?.rootViewController?.presentAlert(reason: error.errorDescription!)
+        }
+    }
     return true
   }
     func checkIcloudStatus(completion: @escaping(Result<Bool, IcloudError>) -> Void){

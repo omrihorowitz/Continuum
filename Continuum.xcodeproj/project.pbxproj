@@ -10,6 +10,8 @@
 		6C8EC35A25CB68940001E4A2 /* PhotoSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8EC35925CB68940001E4A2 /* PhotoSelectorViewController.swift */; };
 		6C8EC35D25CB8E800001E4A2 /* CustomAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8EC35C25CB8E800001E4A2 /* CustomAlbum.swift */; };
 		6C8EC37225CCC02F0001E4A2 /* IcloudError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8EC37125CCC02F0001E4A2 /* IcloudError.swift */; };
+		6C8EC37825CCC64D0001E4A2 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C8EC37725CCC64D0001E4A2 /* CloudKit.framework */; };
+		6C8EC37B25CCE1130001E4A2 /* CommentError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8EC37A25CCE1130001E4A2 /* CommentError.swift */; };
 		6CDF603625C9F3F600443BFC /* PostListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDF603525C9F3F600443BFC /* PostListTableViewController.swift */; };
 		6CDF603925C9F59E00443BFC /* PostDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDF603825C9F59E00443BFC /* PostDetailTableViewController.swift */; };
 		6CDF603C25C9F5CD00443BFC /* AddPostTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDF603B25C9F5CD00443BFC /* AddPostTableViewController.swift */; };
@@ -28,6 +30,9 @@
 		6C8EC35925CB68940001E4A2 /* PhotoSelectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorViewController.swift; sourceTree = "<group>"; };
 		6C8EC35C25CB8E800001E4A2 /* CustomAlbum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlbum.swift; sourceTree = "<group>"; };
 		6C8EC37125CCC02F0001E4A2 /* IcloudError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IcloudError.swift; sourceTree = "<group>"; };
+		6C8EC37425CCC6430001E4A2 /* Continuum.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Continuum.entitlements; sourceTree = "<group>"; };
+		6C8EC37725CCC64D0001E4A2 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		6C8EC37A25CCE1130001E4A2 /* CommentError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentError.swift; sourceTree = "<group>"; };
 		6CDF603525C9F3F600443BFC /* PostListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListTableViewController.swift; sourceTree = "<group>"; };
 		6CDF603825C9F59E00443BFC /* PostDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailTableViewController.swift; sourceTree = "<group>"; };
 		6CDF603B25C9F5CD00443BFC /* AddPostTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostTableViewController.swift; sourceTree = "<group>"; };
@@ -49,12 +54,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6C8EC37825CCC64D0001E4A2 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6C8EC37625CCC64D0001E4A2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6C8EC37725CCC64D0001E4A2 /* CloudKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		6CDF602A25C9F25200443BFC /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -108,6 +122,7 @@
 				6CDF604425C9FA6100443BFC /* PostError.swift */,
 				6C8EC35C25CB8E800001E4A2 /* CustomAlbum.swift */,
 				6C8EC37125CCC02F0001E4A2 /* IcloudError.swift */,
+				6C8EC37A25CCE1130001E4A2 /* CommentError.swift */,
 			);
 			path = "Helpers & Extensions";
 			sourceTree = "<group>";
@@ -125,6 +140,7 @@
 			children = (
 				F7F99C372211F96400D13C4C /* Continuum */,
 				F7F99C362211F96400D13C4C /* Products */,
+				6C8EC37625CCC64D0001E4A2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -139,6 +155,7 @@
 		F7F99C372211F96400D13C4C /* Continuum */ = {
 			isa = PBXGroup;
 			children = (
+				6C8EC37425CCC6430001E4A2 /* Continuum.entitlements */,
 				6CDF602F25C9F2A500443BFC /* Models */,
 				6CDF603025C9F2AA00443BFC /* Controllers */,
 				6CDF603125C9F2BA00443BFC /* View Controllers */,
@@ -234,6 +251,7 @@
 				6CDF603F25C9F67800443BFC /* Post.swift in Sources */,
 				6CDF604525C9FA6100443BFC /* PostError.swift in Sources */,
 				6CDF604225C9F8DC00443BFC /* PostController.swift in Sources */,
+				6C8EC37B25CCE1130001E4A2 /* CommentError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -381,6 +399,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Continuum/Continuum.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = W578QLR797;
 				INFOPLIST_FILE = Continuum/Resources/Info.plist;
@@ -399,6 +418,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Continuum/Continuum.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = W578QLR797;
 				INFOPLIST_FILE = Continuum/Resources/Info.plist;

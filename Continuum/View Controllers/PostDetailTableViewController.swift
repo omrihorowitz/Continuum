@@ -40,11 +40,11 @@ class PostDetailTableViewController: UITableViewController {
                 switch result {
                 case .success(_):
                     print("Success")
+                    self.tableView.reloadData()
                 case .failure(_):
                     print("Failure")
                 }
             }
-            self.tableView.reloadData()
         }
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .destructive, handler: nil)
@@ -67,9 +67,30 @@ class PostDetailTableViewController: UITableViewController {
     }
     
     func updateViews(){
-        photoImageView.image = post?.photo
-        tableView.reloadData()
-            
+            photoImageView.image = post?.photo
+            fetchComments { (result) in
+                DispatchQueue.main.async {
+                    switch result {
+                    case .success(_):
+                        self.tableView.reloadData()
+                    case .failure(_):
+                        print("No comments because of error")
+                    }
+                }
+            }
+        }
+    
+    func fetchComments(completion: @escaping (Result<Bool, CommentError>) -> Void){
+        guard let post = post else { return }
+        PostController.shared.fetchCommentsFor(post: post) { (result) in
+            switch result{
+            case .success(_):
+                completion(.success(true))
+            case .failure(_):
+                print("Error loading comments")
+                return completion(.failure(.unableToUnwrap))
+            }
+        }
     }
 
     // MARK: - Table view data source
@@ -123,6 +144,12 @@ extension UIViewController {
             reasonString = "Please choose an image"
         case "missingCaption":
             reasonString = "Please enter a caption"
+        case "noAccount":
+            reasonString = "No Icloud Account"
+        case "restricted":
+            reasonString = "Icloud account restricted"
+        case "couldNotDetermine":
+            reasonString = "Could not find Icloud"
         default:
             reasonString = "Alert"
         }

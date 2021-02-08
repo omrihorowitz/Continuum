@@ -31,6 +31,7 @@ class AddPostTableViewController: UITableViewController, ChildViewControllerDele
         PostController.shared.addPostWith(image: selectedImage, caption: caption) { (result) in
             switch result {
             case .success(_):
+                self.tabBarController?.selectedIndex = 0
                 print("Success")
             case .failure(_):
                 print("Failure")
@@ -48,7 +49,6 @@ class AddPostTableViewController: UITableViewController, ChildViewControllerDele
                 print("Could not save")
                 }
             }
-        self.tabBarController?.selectedIndex = 0
     }
     
     func photoSelectorViewControllerSelected(image: UIImage) {

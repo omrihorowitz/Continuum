@@ -1,14 +1,14 @@
 //
-//  PostError.swift
+//  CommentError.swift
 //  Continuum
 //
-//  Created by Omri Horowitz on 2/2/21.
+//  Created by Omri Horowitz on 2/4/21.
 //  Copyright © 2021 trevorAdcock. All rights reserved.
 //
 
 import Foundation
 
-enum PostError: LocalizedError {
+enum CommentError: LocalizedError {
     
     case queryError
     case unableToUnwrap
@@ -17,7 +17,7 @@ enum PostError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .queryError:
-            return "Error querying posts"
+            return "Error querying comments"
         case .unableToUnwrap:
             return "Unable to unwrap"
         case .thrownError(let error):
